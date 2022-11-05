@@ -1,0 +1,16 @@
+.body{
+    margin: 0;
+    padding: 0
+}
+.parentContainer{
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.imgS{
+    margin: 10px;
+}
