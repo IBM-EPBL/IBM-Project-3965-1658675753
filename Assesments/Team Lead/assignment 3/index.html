@@ -14,6 +14,20 @@
         <img class="imgS" src="https://vasagan-bucket1.s3.jp-tok.cloud-object-storage.appdomain.cloud/marvel-3.jpg" alt="bucketImg-3">
         <img class="imgS" src="https://vasagan-bucket1.s3.jp-tok.cloud-object-storage.appdomain.cloud/siderman.jpg" alt="bucketImg-4">
         <img class="imgS" src="https://vasagan-bucket1.s3.jp-tok.cloud-object-storage.appdomain.cloud/wallpaperflare.com_wallpaper.jpg" alt="bucketImg-5">
+    
+        <script>
+            window.watsonAssistantChatOptions = {
+              integrationID: "ff946d70-3717-4f9b-ab79-a23fe39326b9", // The ID of this integration.
+              region: "us-south", // The region your integration is hosted in.
+              serviceInstanceID: "ae4661b5-f345-47b1-a3cc-89cc1561a5bf", // The ID of your service instance.
+              onLoad: function(instance) { instance.render(); }
+            };
+            setTimeout(function(){
+              const t=document.createElement('script');
+              t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+              document.head.appendChild(t);
+            });
+          </script>
     </div>
 </body>
 </html>
