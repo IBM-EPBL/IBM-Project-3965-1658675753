@@ -7,7 +7,6 @@ app = Flask(__name__)
 app.secret_key = 'a'
 
 conn = ibm_db.connect("DATABASE=bludb;HOSTNAME=6667d8e9-9d4d-4ccb-ba32-21da3bb5aafc.c1ogj3sd0tgtu0lqde00.databases.appdomain.cloud;PORT=30376;SECURITY=SSL;SSLServiceCertificate=DigiCertGlobalRootCA.crt;UID=wmx93883;PWD=uQM2V5K7w8G0j4IK",'','')
-
 @app.route('/login',methods=['GET','POST'])
 def login():
     global userid
@@ -26,14 +25,17 @@ def login():
         print (account)
         if account:
             session['loggedin'] = True
-            session['id'] = account['NAME']
-            userid=  account['NAME']
-            session['name'] = account['NAME']
+            session['id'] = account['name']
+            userid=  account['name']
+            session['name'] = account['name']
             msg = 'Logged in successfully !'
-            return render_template('dashboard.html', msg = msg)
+            return render_template('welcome.html', msg = msg)
         else:
             msg = 'Incorrect name / password !'
     return render_template('login.html', msg = msg)
+
+
+
 
 @app.route('/', methods =['GET', 'POST'])
 def register():
