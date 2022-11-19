@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-deploy
+  name: ntjobrecommender
 
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: flask-deploy
+      app: ntjobrecommender
   template:
     metadata:
       labels:
-        app: flask-deploy
+        app: ntjobrecommender
 
     spec:
       containers:
         - name: web
-          image: au.icr.io/job-recommender-main/
+          image: nt-job-recommender:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
