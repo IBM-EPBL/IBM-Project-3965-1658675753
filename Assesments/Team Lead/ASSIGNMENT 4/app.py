@@ -1,6 +1,8 @@
 from flask import Flask , render_template , request, session
 import ibm_db
 import re
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
  
 app = Flask(__name__)
 
@@ -30,8 +32,25 @@ def login():
             userid=  account['NAME']
             session['name'] = account['NAME']
             msg = 'Logged in successfully !'
-            return render_template('dashboard.html', msg = msg)
-        else:
+            message = Mail(
+            from_email='19bcs047@mcet.in',
+            to_emails='19bcs055@mcet.in',
+            subject='A Test from SendGrid!',
+            html_content='<strong>Hello there from SendGrid your URL is: ' +
+            '<a href=''https://github.com/cyberjive''>right here!</a></strong>')
+            try:
+                sg = SendGridAPIClient('SENDGRID_API_KEY')
+                response = sg.send(message)
+                code, body, headers = response.status_code, response.body, response.headers
+                print(f"Response Code: {code} ")
+                print(f"Response Body: {body} ")
+                print(f"Response Headers: {headers} ")
+                print("Message Sent!")
+            except Exception as e:
+                print("Error: {0}".format(e))
+                print(str(response.status_code))
+        return render_template('dashboard.html', msg = msg)
+    else:
             msg = 'Incorrect name / password !'
     return render_template('login.html', msg = msg)
 
@@ -69,6 +88,9 @@ def register():
         msg = 'Please fill out the form !'
     return render_template('register.html', msg = msg)
 
+@app.route('/profile')
+def renderProfile():
+    return render_template('profile.html')    
     
 if __name__ == '__main__':
    app.run()

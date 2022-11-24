@@ -18,7 +18,7 @@ def SendEmail(to_email):
         html_content='<strong>Hello there from SendGrid your URL is: ' +
         '<a href=''https://github.com/cyberjive''>right here!</a></strong>')
     try:
-        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        sg = SendGridAPIClient('SENDGRID_API_KEY')
         response = sg.send(message)
         code, body, headers = response.status_code, response.body, response.headers
         print(f"Response Code: {code} ")
